@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dashboard Pre-order Envacgen (Tay chân miệng) — Long Châu</title>
+  <meta name="description" content="Báo cáo đơn cọc & kết quả xử lý tư vấn - Pre-order vaccine Envacgen (Tay chân miệng) | Phòng Kinh doanh Vaccine eCom - FPT Long Châu">
+  <meta property="og:title" content="Dashboard Pre-order Envacgen (Tay chân miệng)">
+  <meta property="og:description" content="Đơn cọc & kết quả tư vấn Pre-order Envacgen - Long Châu Vaccine eCom">
+  <meta name="theme-color" content="#3b0764">
+
+  <style>
+    html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#3b0764;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+    #frame{border:none;width:100%;height:100%;display:block}
+    /* màn hình loading trong lúc chờ Apps Script tải */
+    #loader{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+      background:linear-gradient(120deg,#2a0845 0%,#3b0764 40%,#5b21b6 100%);color:#fff;z-index:10;transition:opacity .4s}
+    #loader.hide{opacity:0;pointer-events:none}
+    .spin{width:46px;height:46px;border:4px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    #loader .t{font-size:15px;font-weight:700;letter-spacing:.3px}
+    #loader .s{font-size:12.5px;color:#c4b5fd}
+  </style>
+</head>
+<body>
+
+  <div id="loader">
+    <div class="spin"></div>
+    <div class="t">Đang tải Dashboard Pre-order Envacgen…</div>
+    <div class="s">Long Châu · Vaccine eCom</div>
+  </div>
+
+  <iframe id="frame" title="Dashboard Pre-order Envacgen" allowfullscreen></iframe>
+
+  <script>
+    /* =====================================================================
+       CHỈ SỬA DUY NHẤT DÒNG DƯỚI ĐÂY mỗi khi deploy Apps Script link mới.
+       Dán link "Web app URL" (kết thúc bằng /exec) vào giữa 2 dấu nháy.
+       Link GitHub Pages của bạn KHÔNG đổi.
+       ===================================================================== */
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbygfYt6JS_iI8bMIUNiDn7fxwJNNNdyYHyfIF8EQ2i41PSiABmZvTe0y38ntinj1POn/exec";
+    /* ===================================================================== */
+
+    (function () {
+      var f = document.getElementById('frame');
+      var loader = document.getElementById('loader');
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('XXXX') !== -1) {
+        loader.innerHTML = '<div class="t">Chưa cấu hình link Apps Script</div>' +
+          '<div class="s">Mở index.html, dán Web app URL (/exec) vào biến APPS_SCRIPT_URL.</div>';
+        return;
+      }
+      f.src = APPS_SCRIPT_URL;
+      f.addEventListener('load', function () { loader.classList.add('hide'); });
+      // phòng khi sự kiện load không bắn (một số trình duyệt với iframe cross-origin)
+      setTimeout(function () { loader.classList.add('hide'); }, 6000);
+    })();
+  </script>
+
+</body>
+</html>
